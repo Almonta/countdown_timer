@@ -1,0 +1,12 @@
+<div class="container set_center_outer">
+  <div class="set_center_inner">
+    <h1>ログイン</h1>
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %><br>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %><br>
+      <%= f.submit "ログイン" %>
+    <% end %>
+  </div>
+</div>
