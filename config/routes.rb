@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'homes/index'
   resources :targets
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
