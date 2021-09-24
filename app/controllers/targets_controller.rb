@@ -3,7 +3,8 @@ class TargetsController < ApplicationController
 
   # GET /targets or /targets.json
   def index
-    @targets = Target.all
+    @targets = Target.where(user_id: current_user.id)
+    binding.irb
   end
 
   # GET /targets/1 or /targets/1.json
@@ -22,6 +23,7 @@ class TargetsController < ApplicationController
   # POST /targets or /targets.json
   def create
     @target = Target.new(target_params)
+    @target.user_id = current_user.id
 
     respond_to do |format|
       if @target.save
