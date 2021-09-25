@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :phrases
   get 'homes/index'
   resources :targets
   resources :users, only: [:new, :create, :show]
