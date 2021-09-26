@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_114037) do
+ActiveRecord::Schema.define(version: 2021_09_26_041657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "phrases", force: :cascade do |t|
+    t.string "content"
+    t.string "personage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "targets", force: :cascade do |t|
+    t.integer "age"
+    t.string "goal"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_targets_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,4 +40,5 @@ ActiveRecord::Schema.define(version: 2021_09_22_114037) do
     t.string "email"
   end
 
+  add_foreign_key "targets", "users"
 end

@@ -8,13 +8,18 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/0233699884.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
 
     <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Home</a>
+        <!-- <a class="nav-link active" href="homes/index">Home</a> -->
+        <%= link_to "Homes", homes_index_path, class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Phrases", phrases_path, class: "nav-link"%>
       </li>
       <% if logged_in? %>
         <li class="nav-item">
@@ -31,9 +36,6 @@
           <%= link_to "Login", new_session_path, class: "nav-link" %>
         </li>
       <% end %>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
     </ul>
 
     <% flash.each do |key, value| %>
@@ -42,4 +44,5 @@
 
     <%= yield %>
   </body>
+
 </html>

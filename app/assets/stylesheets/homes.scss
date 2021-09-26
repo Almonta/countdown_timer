@@ -1,0 +1,47 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+blockquote {
+  position: relative;
+  padding: 10px 15px 10px 60px;
+  box-sizing: border-box;
+  font-style: italic;
+  background: #efefef;
+  color: #555;
+}
+
+blockquote:before{
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: #cfcfcf;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+blockquote p {
+  padding: 0;
+  margin: 10px 0;
+  line-height: 1.7;
+}
+
+blockquote cite {
+  display: block;
+  text-align: right;
+  color: #888888;
+  font-size: 0.9em;
+}
+
+body {
+  // background-image: image-url('background/goal.jpg');
+  background: #555;
+}
+
+.card {
+  display: inline-block;
+}
