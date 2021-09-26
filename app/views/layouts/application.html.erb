@@ -18,6 +18,9 @@
         <!-- <a class="nav-link active" href="homes/index">Home</a> -->
         <%= link_to "Homes", homes_index_path, class: "nav-link"%>
       </li>
+      <li class="nav-item">
+        <%= link_to "Phrases", phrases_path, class: "nav-link"%>
+      </li>
       <% if logged_in? %>
         <li class="nav-item">
           <%= link_to "Profile", user_path(current_user.id), class: "nav-link"%>
@@ -33,9 +36,6 @@
           <%= link_to "Login", new_session_path, class: "nav-link" %>
         </li>
       <% end %>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
     </ul>
 
     <% flash.each do |key, value| %>

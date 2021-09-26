@@ -2,7 +2,10 @@
   <div class="set_center_outer">
     <div class="set_center_inner">
       <blockquote>
-        <p>ここに引用する文を書きます。</p>
+        <p><%= @phrase.content %></p>
+        <% if @phrase.present? %>
+          <p><%= @phrase.personage %></p>
+        <% end %>
       </blockquote>
     </div>
   </div>
@@ -22,6 +25,7 @@
 
       <div>
         <%= link_to 'Target新規登録', new_target_path, class:"btn btn-outline-dark" %>
+        <%= link_to 'Phrase新規登録', new_phrase_path, class:"btn btn-outline-dark" %>
       </div>
 
 

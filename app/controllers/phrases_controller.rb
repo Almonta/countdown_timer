@@ -64,6 +64,6 @@ class PhrasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def phrase_params
-      params.require(:phrase).permit(:content, :personaga)
+      params.require(:phrase).permit(:content, :personage)
     end
 end
