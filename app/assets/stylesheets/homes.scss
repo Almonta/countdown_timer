@@ -43,5 +43,10 @@ body {
 }
 
 .card {
-  display: inline-block;
+  float: left;
+  margin: 20px;
+}
+
+.new_buttom {
+  clear: both;
 }

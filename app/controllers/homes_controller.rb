@@ -7,6 +7,10 @@ class HomesController < ApplicationController
     # phrase_ids = Phrase.select('id')
     # 取得したidを配列に入れる
 
+    # # pluckを使用した方法で、以下のようにできないか？
+    # phrase_ids = Phrase.pluck(:id)
+    # @phrase = Phrase.find(rand(phrase_ids))
+
     # 配列に入れたidの中からランダムにidを取り出す
     @phrase = Phrase.find(rand(Phrase.first.id..Phrase.last.id))
   end

@@ -11,19 +11,26 @@
   </div>
 
     <% @targets.each do |target| %>
-      <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card bg-light mb-3" style="width: 32rem;">
           <div class="card-header"><%= target.age %>才まで</div>
           <% if target.goal.present? %>
             <div class="card-body">
               <h5 class="card-title">目標</h5>
               <p class="card-text"><%= target.goal %></p>
+              <p class="until">目標期限まで</p>
+              <p class="timer">あと
+              <span id="hour"></span>時間
+              <span id="min"></span>分
+              <span id="sec"></span>秒
+              <p>そのためにいまこの時間を何に使いますか？</p>
+              </p>
             </div>
           <% end %>
-      </div>
+        </div>
     <% end %>
 
 
-      <div>
+      <div class="new_buttom">
         <%= link_to 'Target新規登録', new_target_path, class:"btn btn-outline-dark" %>
         <%= link_to 'Phrase新規登録', new_phrase_path, class:"btn btn-outline-dark" %>
       </div>
@@ -32,3 +39,108 @@
 <p>日々の学びの中で"シビれた"名言を登録していこう！</p>
 
 </div>
+
+
+
+
+<script>
+
+function countdown(){
+const now=new Date();//今の時間
+const tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);//明日の0:00
+const differ=tomorrow.getTime()-now.getTime();//あと何秒か計算
+
+
+const sec=Math.floor(differ/1000)%60;//ミリ秒を秒に直してから
+const min=Math.floor(differ/1000/60)%60;//1時間=60分だからね
+const hour=Math.floor(differ/1000/60/60);
+
+
+document.getElementById("hour").textContent=String(hour).padStart(2,"0"); //一桁になった時0がつくように
+document.getElementById("min").textContent=String(min).padStart(2,"0")
+document.getElementById("sec").textContent=String(sec).padStart(2,"0")
+setTimeout(countdown,1000);//1秒毎に繰り返す
+}
+countdown();
+
+
+
+
+
+
+// function set2fig(num) {
+//   // 数値が1桁だったら2桁の文字列にして返す
+//   var ret;
+//   if( num < 10 ) { ret = "0" + num; }
+//   else { ret = num; }
+//   return ret;
+// }
+// function isNumOrZero(num) {
+//   // 数値でなかったら0にして返す
+//   if( isNaN(num) ) { return 0; }
+//   return num;
+// }
+// function showCountdown() {
+//   // 現在日時を数値(1970-01-01 00:00:00からのミリ秒)に変換
+//   var nowDate = new Date();
+//   var dnumNow = nowDate.getTime();
+
+//   // 指定日時を数値(1970-01-01 00:00:00からのミリ秒)に変換
+//   var inputYear  = document.getElementById("userYear").value;
+//   var inputMonth = document.getElementById("userMonth").value - 1;
+//   var inputDate  = document.getElementById("userDate").value;
+//   var inputHour  = document.getElementById("userHour").value;
+//   var inputMin   = document.getElementById("userMin").value;
+//   var inputSec   = document.getElementById("userSec").value;
+//   var targetDate = new Date( isNumOrZero(inputYear), isNumOrZero(inputMonth), isNumOrZero(inputDate), isNumOrZero(inputHour), isNumOrZero(inputMin), isNumOrZero(inputSec) );
+//   var dnumTarget = targetDate.getTime();
+
+//   // 表示を準備
+//   var dlYear  = targetDate.getFullYear();
+//   var dlMonth = targetDate.getMonth() + 1;
+//   var dlDate  = targetDate.getDate();
+//   var dlHour  = targetDate.getHours();
+//   var dlMin   = targetDate.getMinutes();
+//   var dlSec   = targetDate.getSeconds();
+//   var msg1 = "期限の" + dlYear + "/" + dlMonth + "/" + dlDate + " " + set2fig(dlHour) + ":" + set2fig(dlMin) + ":" + set2fig(dlSec);
+
+//   // 引き算して日数(ミリ秒)の差を計算
+//   var diff2Dates = dnumTarget - dnumNow;
+//   if( dnumTarget < dnumNow ) {
+//     // 期限が過ぎた場合は -1 を掛けて正の値に変換
+//     diff2Dates *= -1;
+//   }
+
+//   // 差のミリ秒を、日数・時間・分・秒に分割
+//   var dDays  = diff2Dates / ( 1000 * 60 * 60 * 24 );   // 日数
+//   diff2Dates = diff2Dates % ( 1000 * 60 * 60 * 24 );
+//   var dHour  = diff2Dates / ( 1000 * 60 * 60 );   // 時間
+//   diff2Dates = diff2Dates % ( 1000 * 60 * 60 );
+//   var dMin   = diff2Dates / ( 1000 * 60 );   // 分
+//   diff2Dates = diff2Dates % ( 1000 * 60 );
+//   var dSec   = diff2Dates / 1000;   // 秒
+//   var msg2 = Math.floor(dDays) + "日"
+//           + Math.floor(dHour) + "時間"
+//           + Math.floor(dMin) + "分"
+//           + Math.floor(dSec) + "秒";
+
+//   // 表示文字列の作成
+//   var msg;
+//   if( dnumTarget > dnumNow ) {
+//     // まだ期限が来ていない場合
+//     msg = msg1 + "までは、あと" + msg2 + "です。";
+//   }
+//   else {
+//     // 期限が過ぎた場合
+//     msg = msg1 + "は、既に" + msg2 + "前に過ぎました。";
+//   }
+
+//   // 作成した文字列を表示
+//   document.getElementById("RealtimeCountdownArea").innerHTML = msg;
+//   document.getElementById("deadline.id").value =  targetDate;
+
+// }
+// // 1秒ごとに実行
+// setInterval('showCountdown()',1000);
+
+</script>
